@@ -1,0 +1,45 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    helm.sh/resource-policy: keep
+  labels:
+    app.kubernetes.io/name: ambassador
+    product: aes
+  name: projectrevisions.getambassador.io
+spec:
+  group: getambassador.io
+  names:
+    categories:
+    - ambassador-crds
+    kind: ProjectRevision
+    plural: projectrevisions
+    singular: projectrevision
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.project.name
+      name: Project
+      type: string
+    - jsonPath: .spec.ref
+      name: Ref
+      type: string
+    - jsonPath: .spec.rev
+      name: Rev
+      type: string
+    - jsonPath: .status.phase
+      name: Status
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v2
+    schema:
+      openAPIV3Schema:
+        description: ProjectRevision is the Schema for the ProjectRevision API
+        type: object
+        x-kubernetes-preserve-unknown-fields: true
+    served: true
+    storage: true
+    subresources:
+      status: {}

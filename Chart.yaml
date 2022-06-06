@@ -1,0 +1,5 @@
+# all the CRDs were copied from Ambassador's official chart
+# https://github.com/emissary-ingress/emissary/tree/release/v1.13/charts/ambassador/crds
+apiVersion: v1
+name: ambassador-crds
+version: 0.0.3
